@@ -1,12 +1,27 @@
+import { useState } from "react";
 import DummyData from "../DummyData";
+import JobModal from "./JobModal";
 
 function Jobs() {
     const data = DummyData;
+    const[modalOpen, setModalOpen] = useState(false);
+    const [selectedJob, setSelectedJob] = useState(null);
+
+    const openModal = (job)=>{
+      setSelectedJob(job);
+      console.log("abioerto");
+      setModalOpen(true);
+    };
+
+    const closeModal=()=>{
+      setModalOpen(false);
+    };
 
   return (
     <>
+      {modalOpen && <JobModal job={selectedJob} closeModal={closeModal}  />}
       {data.map(job =>(
-            <div className="mt-8 ml-4 border w-2/4 p-4 rounded-md hover:shadow-md" key={job.id}>
+            <div className="mt-8 ml-4 border w-2/4 p-4 rounded-md hover:shadow-md" key={job.id} onClick={()=>openModal(job)}>
             <div className="flex justify-between">
             <div className="flex">
             <img  src={job.logo} alt="logo"className="mr-8 h-8 w-8"/>
@@ -33,6 +48,7 @@ function Jobs() {
             <div></div>
           </div>
       ))}
+       
     </>
   );
 }

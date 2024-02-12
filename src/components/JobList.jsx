@@ -2,6 +2,7 @@ import Jobs from "./Jobs";
 import SearchBar from "./SearchBar";
 
 function JobList() {
+  
   return (
     <>
       <div className="pt-4 pb-10  bg-blue-50">
